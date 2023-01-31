@@ -17,7 +17,14 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    color: midnightblue;
+    }
+
+    #keyboard .enabled {
+        color: midnightblue;
+    }
+
+    #keyboard .disabled {
+        color: lightblue;
     }
     
         #keyboard li {
