@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcsGalgje</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/acsgalgje.css" />
+</head>
+
+<body>
+  <div id="container">
+    <div align="center">
+      <img src={% static 'images/GalgjeHeader.png' %} alt="Helaas pindakaas" width="312" height="111"> 
+    </div>
+    <div align="right">
+      <img src={% static 'images/galgje7.png' %} alt="Helaas pindakaas" width="161" height="191"> 
+    </div>
+    <form method="POST" class="galgje-form">
+      {% csrf_token %}
+      <ul id="keyboard">
+        <li class="tab"></li>
+        {% if 'q' in guessedletters %}
+          <li class="letter disabled">q</li>
+        {% else %}
+          <li class="letter enabled">q</li>
+        {% endif %}
+        {% if 'w' in guessedletters %}
+          <li class="letter disabled">w</li>
+        {% else %}
+          <li class="letter enabled">w</li>
+        {% endif %}
+        {% if 'e' in guessedletters %}
+          <li class="letter disabled">e</li>
+        {% else %}
+          <li class="letter enabled">e</li>
+        {% endif %}
+        {% if 'r' in guessedletters %}
+          <li class="letter disabled">r</li>
+        {% else %}
+          <li class="letter enabled">r</li>
+        {% endif %}
+        {% if 't' in guessedletters %}
+          <li class="letter disabled">t</li>
+        {% else %}
+          <li class="letter enabled">t</li>
+        {% endif %}
+        {% if 'y' in guessedletters %}
+          <li class="letter disabled">y</li>
+        {% else %}
+          <li class="letter enabled">y</li>
+        {% endif %}
+        {% if 'u' in guessedletters %}
+          <li class="letter disabled">u</li>
+        {% else %}
+          <li class="letter enabled">u</li>
+        {% endif %}
+        {% if 'i' in guessedletters %}
+          <li class="letter disabled">i</li>
+        {% else %}
+          <li class="letter enabled">i</li>
+        {% endif %}
+        {% if 'o' in guessedletters %}
+          <li class="letter disabled">o</li>
+        {% else %}
+          <li class="letter enabled">o</li>
+        {% endif %}
+        {% if 'p' in guessedletters %}
+          <li class="letter disabled">p</li>
+        {% else %}
+          <li class="letter enabled">p</li>
+        {% endif %}
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol lastitem"><span class="off"></span><span class="on"></span></li>
+        <li class="capslock"></li>
+        {% if 'a' in guessedletters %}
+          <li class="letter disabled">a</li>
+        {% else %}
+          <li class="letter enabled">a</li>
+        {% endif %}
+        {% if 's' in guessedletters %}
+          <li class="letter disabled">s</li>
+        {% else %}
+          <li class="letter enabled">s</li>
+        {% endif %}
+        {% if 'd' in guessedletters %}
+          <li class="letter disabled">d</li>
+        {% else %}
+          <li class="letter enabled">d</li>
+        {% endif %}
+        {% if 'f' in guessedletters %}
+          <li class="letter disabled">f</li>
+        {% else %}
+          <li class="letter enabled">f</li>
+        {% endif %}
+        {% if 'g' in guessedletters %}
+          <li class="letter disabled">g</li>
+        {% else %}
+          <li class="letter enabled">g</li>
+        {% endif %}
+        {% if 'h' in guessedletters %}
+          <li class="letter disabled">h</li>
+        {% else %}
+          <li class="letter enabled">h</li>
+        {% endif %}
+        {% if 'j' in guessedletters %}
+          <li class="letter disabled">j</li>
+        {% else %}
+          <li class="letter enabled">j</li>
+        {% endif %}
+        {% if 'k' in guessedletters %}
+          <li class="letter disabled">k</li>
+        {% else %}
+          <li class="letter enabled">k</li>
+        {% endif %}
+        {% if 'l' in guessedletters %}
+          <li class="letter disabled">l</li>
+        {% else %}
+          <li class="letter enabled">l</li>
+        {% endif %}
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="return lastitem"></li>
+        <li class="left-shift"></li>
+        {% if 'z' in guessedletters %}
+          <li class="letter disabled">z</li>
+        {% else %}
+          <li class="letter enabled">z</li>
+        {% endif %}
+        {% if 'x' in guessedletters %}
+          <li class="letter disabled">x</li>
+        {% else %}
+          <li class="letter enabled">x</li>
+        {% endif %}
+        {% if 'c' in guessedletters %}
+          <li class="letter disabled">c</li>
+        {% else %}
+          <li class="letter enabled">c</li>
+        {% endif %}
+        {% if 'v' in guessedletters %}
+          <li class="letter disabled">v</li>
+        {% else %}
+          <li class="letter enabled">v</li>
+        {% endif %}
+        {% if 'b' in guessedletters %}
+          <li class="letter disabled">b</li>
+        {% else %}
+          <li class="letter enabled">b</li>
+        {% endif %}
+        {% if 'n' in guessedletters %}
+          <li class="letter disabled">n</li>
+        {% else %}
+          <li class="letter enabled">n</li>
+        {% endif %}
+        {% if 'm' in guessedletters %}
+          <li class="letter disabled">m</li>
+        {% else %}
+          <li class="letter enabled">m</li>
+        {% endif %}
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol"><span class="off"></span><span class="on"></span></li>
+        <li class="right-shift enabled lastitem">Nieuw</li>
+    </ul>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src={% static 'js/acsgalgje.js' %}></script>
+
+</body>
+
+</html>
