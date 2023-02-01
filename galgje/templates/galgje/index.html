@@ -14,10 +14,51 @@
     <div align="center">
       <img src={% static 'images/GalgjeHeader.png' %} alt="Helaas pindakaas" width="312" height="111"> 
     </div>
-    <div align="right">
-      <img src={% static 'images/galgje7.png' %} alt="Helaas pindakaas" width="161" height="191"> 
-    </div>
+    <table>
+      <tr>
+      <td class="leftpanel">
+        <p textalign="center" class="guessword">{{ guessword }}</p>
+        {% if status > 6 %}
+          <p style="display: block" textalign="center" class="word">{{ word }}</p>
+        {% else %}
+          <p style="display: contents" textalign="center" class="word">{{ word }}</p>
+        {% endif %}
+        <br><br>
+        <table>
+          <tr>
+            <td width="290"><p class="scorepanel" textalign="left">Score: {{score}}</p></td>
+            <td><p textalign="right" class="scorepanel">Hoogste score: {{highscore}}</p></td>
+          </tr>
+        </table>
+      </td>
+      <td class="rightpanel" align="right">
+        {% if status == 0 %}
+          <img src={% static 'images/galgje0.png' %} alt="Wauw, zonder fouten!" width="161" height="191"> 
+          {% elif status == 1 %}
+          <img src={% static 'images/galgje1.png' %} alt="Zo, dat ging goed!" width="161" height="191"> 
+          {% elif status == 2 %}
+          <img src={% static 'images/galgje2.png' %} alt="Prima gedaan!" width="161" height="191"> 
+          {% elif status == 3 %}
+          <img src={% static 'images/galgje3.png' %} alt="Jippie geraden!" width="161" height="191"> 
+          {% elif status == 4 %}
+          <img src={% static 'images/galgje4.png' %} alt="Het touw hing al klaar!" width="161" height="191"> 
+          {% elif status == 5 %}
+          <img src={% static 'images/galgje5.png' %} alt="Je kreeg het knap benauwd!" width="161" height="191"> 
+          {% elif status == 6 %}
+          <img src={% static 'images/galgje6.png' %} alt="Dat ging maar net!" width="161" height="191"> 
+          {% else %}
+          <img src={% static 'images/galgje7.png' %} alt="Helaas pindakaas." width="161" height="191"> 
+        {% endif %}
+      </td>
+    </tr>
+    </table>
     <form method="POST" class="galgje-form">
+      <input type='hidden' name="status" value="{{ status }}">
+      <input type='hidden' name="word" value="{{ word }}">
+      <input type='hidden' name="guessword" value="{{ guessword }}">
+      <input type='hidden' name="guessedletters" value="{{ guessedletters }}">
+      <input type='hidden' name="score" value="{{ score }}">
+      <input type='hidden' name="highscore" value="{{ highscore }}">
       {% csrf_token %}
       <ul id="keyboard">
         <li class="tab"></li>

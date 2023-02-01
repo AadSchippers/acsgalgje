@@ -12,7 +12,36 @@
     margin: 100px auto;
     width: 688px;
     }
-       
+
+    #container .leftpanel {
+        width: 488px;
+    }
+
+    #container .rightpanel {
+        width: 200px;
+    }
+
+    #container .scorepanel {
+        color: midnightblue;
+    }
+
+    #container .guessword {
+        font: 150%/1.5  Courier New;
+        font-weight: 600;
+        text-align: center;
+        color: midnightblue;
+        width: 488px;
+    }
+
+    #container .word {
+        font: 150%/1.5  Courier New;
+        font-weight: 600;
+        color: lightblue;
+        text-align: center;
+        background: midnightblue;
+        width: 488px;
+        }
+           
     #keyboard {
     margin: 0;
     padding: 0;
