@@ -23,6 +23,8 @@
           {% else %}
             <p style="display: contents" textalign="center" class="word">{{ word }}</p>
           {% endif %}
+          <br><br>
+          <p textalign="center" class="guessword">{{ statustext }}</p>
         </td>
       <td class="rightpanel" align="right">
         {% if status == 0 %}
@@ -51,7 +53,9 @@
       <input type='hidden' name="guessword" value="{{ guessword }}">
       <input type='hidden' name="guessedletters" value="{{ guessedletters }}">
       <input type='hidden' name="score" value="{{ score }}">
-      <input type='hidden' name="highscore" value="{{ highscore }}">
+      <input type='hidden' name="totalscore" value="{{ totalscore }}">
+      <input type='hidden' name="statustext" value="{{ statustext }}">
+      <input type='hidden' name="gamedone" value="{{ gamedone }}">
       {% csrf_token %}
       <ul id="keyboard">
         <li class="tab"></li>
@@ -202,7 +206,7 @@
   <table width=100%>
     <tr>
       <td width=50%><p class="scorepanel" align="left" textalign="left">Score: {{score}}</p></td>
-      <td width=50%><p class="scorepanel" align="right" textalign="right">Hoogste score: {{highscore}}</p></td>
+      <td width=50%><p class="scorepanel" align="right" textalign="right">Totaalscore: {{totalscore}}</p></td>
     </tr>
   </table>
 </div>
