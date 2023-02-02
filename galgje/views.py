@@ -7,17 +7,11 @@ import ast
 def index(request):
     if request.method == 'GET':
         try:
-            if not guessedletters:
-                gamevars = InitSpel()
+            if not highscore:
+                gamevars = InitSpel(highscore)
         except UnboundLocalError:
-            gamevars = InitSpel()
-
-        status = gamevars['status']
-        guessword = gamevars['guessword']
-        word = gamevars['word']
-        guessedletters = gamevars['guessedletters']
-        score = gamevars['score']
-        highscore = gamevars['highscore']
+            highscore = 0
+            gamevars = InitSpel(highscore)
 
     if request.method == 'POST':
         letter = request.POST['letter']
@@ -28,10 +22,26 @@ def index(request):
         score = request.POST['score']
         highscore = request.POST['highscore']
 
+        gamevars = {
+            'guessedletters': guessedletters,
+            'status': int(status),
+            'word': word,
+            'guessword': guessword,
+            'score': score,
+            'highscore': highscore,
+        }
+
         if letter == 'Nieuw':
-            guessedletters = InitSpel()
+            gamevars = InitSpel(highscore)
         else:
-            guessedletters = RaadWoord(letter, guessedletters)
+            gamevars = RaadWoord(letter, gamevars)
+
+    status = gamevars['status']
+    guessword = gamevars['guessword']
+    word = gamevars['word']
+    guessedletters = gamevars['guessedletters']
+    score = gamevars['score']
+    highscore = gamevars['highscore']
 
     return render(
         request,
@@ -46,12 +56,10 @@ def index(request):
     )
 
 
-def InitSpel():
+def InitSpel(highscore):
     word = "badjas"
     guessword = "......"
     score = 0
-    highscore = 0
-
 
     gamevars = {
         'guessedletters': [],
@@ -65,7 +73,11 @@ def InitSpel():
     return gamevars
 
 
-def RaadWoord(letter, guessedletters):
+def RaadWoord(letter, gamevars):
+    guessedletters = gamevars['guessedletters']
     guessedletters.append(letter)
+    gamevars['guessedletters'] = guessedletters
+    status = gamevars['status'] + 1
+    gamevars['status'] = status
     
-    return guessedletters
+    return gamevars

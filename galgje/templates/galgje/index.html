@@ -12,42 +12,35 @@
 <body>
   <div id="container">
     <div align="center">
-      <img src={% static 'images/GalgjeHeader.png' %} alt="Helaas pindakaas" width="312" height="111"> 
+      <img src={% static 'images/GalgjeHeader.png' %} width="312" height="111"> 
     </div>
     <table>
       <tr>
-      <td class="leftpanel">
-        <p textalign="center" class="guessword">{{ guessword }}</p>
-        {% if status > 6 %}
-          <p style="display: block" textalign="center" class="word">{{ word }}</p>
-        {% else %}
-          <p style="display: contents" textalign="center" class="word">{{ word }}</p>
-        {% endif %}
-        <br><br>
-        <table>
-          <tr>
-            <td width="290"><p class="scorepanel" textalign="left">Score: {{score}}</p></td>
-            <td><p textalign="right" class="scorepanel">Hoogste score: {{highscore}}</p></td>
-          </tr>
-        </table>
-      </td>
+        <td class="leftpanel">
+          <p textalign="center" class="guessword">{{ guessword }}</p>
+          {% if status > 6 %}
+            <p style="display: block" textalign="center" class="word">{{ word }}</p>
+          {% else %}
+            <p style="display: contents" textalign="center" class="word">{{ word }}</p>
+          {% endif %}
+        </td>
       <td class="rightpanel" align="right">
         {% if status == 0 %}
-          <img src={% static 'images/galgje0.png' %} alt="Wauw, zonder fouten!" width="161" height="191"> 
+          <img src={% static 'images/galgje0.png' %} width="161" height="191"> 
           {% elif status == 1 %}
-          <img src={% static 'images/galgje1.png' %} alt="Zo, dat ging goed!" width="161" height="191"> 
+          <img src={% static 'images/galgje1.png' %} width="161" height="191"> 
           {% elif status == 2 %}
-          <img src={% static 'images/galgje2.png' %} alt="Prima gedaan!" width="161" height="191"> 
+          <img src={% static 'images/galgje2.png' %} width="161" height="191"> 
           {% elif status == 3 %}
-          <img src={% static 'images/galgje3.png' %} alt="Jippie geraden!" width="161" height="191"> 
+          <img src={% static 'images/galgje3.png' %} width="161" height="191"> 
           {% elif status == 4 %}
-          <img src={% static 'images/galgje4.png' %} alt="Het touw hing al klaar!" width="161" height="191"> 
+          <img src={% static 'images/galgje4.png' %} width="161" height="191"> 
           {% elif status == 5 %}
-          <img src={% static 'images/galgje5.png' %} alt="Je kreeg het knap benauwd!" width="161" height="191"> 
+          <img src={% static 'images/galgje5.png' %} width="161" height="191"> 
           {% elif status == 6 %}
-          <img src={% static 'images/galgje6.png' %} alt="Dat ging maar net!" width="161" height="191"> 
+          <img src={% static 'images/galgje6.png' %} width="161" height="191"> 
           {% else %}
-          <img src={% static 'images/galgje7.png' %} alt="Helaas pindakaas." width="161" height="191"> 
+          <img src={% static 'images/galgje7.png' %} width="161" height="191"> 
         {% endif %}
       </td>
     </tr>
@@ -206,6 +199,12 @@
         <li class="right-shift enabled lastitem">Nieuw</li>
     </ul>
   </form>
+  <table width=100%>
+    <tr>
+      <td width=50%><p class="scorepanel" align="left" textalign="left">Score: {{score}}</p></td>
+      <td width=50%><p class="scorepanel" align="right" textalign="right">Hoogste score: {{highscore}}</p></td>
+    </tr>
+  </table>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
