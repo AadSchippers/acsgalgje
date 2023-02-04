@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import ast
 import random
+from django.conf import settings
 from . import words
 
 # Create your views here.
@@ -58,6 +59,8 @@ def index(request):
     statustext = gamevars['statustext']
     gamedone = gamevars['gamedone']
 
+    statusimage = getstatusimage(status)
+
     return render(
         request,
         "galgje/index.html", {
@@ -68,19 +71,27 @@ def index(request):
         'score': score,
         'totalscore': totalscore,
         'statustext': statustext,
+        'statusimage': statusimage,
         'gamedone': gamedone,
         }
     )
 
 
+def getstatusimage(status):
+    if status < 7:
+        return settings.STATIC_URL + "images/galgje" + str(status) + ".png"
+
+    return settings.STATIC_URL + "images/galgje7.png"
+
 def InitSpel(totalscore):
     random.seed()
-    word = words.allwords[random.randint(0, len(words.allwords)-1)]
+    allwords = list(set(words.orgwords) | set(words.newwords))
+    word = allwords[random.randint(0, len(allwords)-1)]
 
     i = 0
     guessword = ""
     while i < len(word):
-        guessword = guessword + "."
+        guessword += "."
         i += 1
 
     score = 0
@@ -142,7 +153,7 @@ def RaadWoord(letter, gamevars):
 
     if guessword == word:
         gamedone = True
-        score = int(256 / (2**(status+1)))
+        score = int(512 / (2**(status+1)))
         if status == 0:
             statustext = "Wauw, zonder fouten!"
         elif status == 1:

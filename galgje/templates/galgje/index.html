@@ -27,23 +27,7 @@
           <p textalign="center" class="statustext">{{ statustext }}</p>
         </td>
       <td class="rightpanel" align="right">
-        {% if status == 0 %}
-          <img src={% static 'images/galgje0.png' %} width="161" height="191"> 
-          {% elif status == 1 %}
-          <img src={% static 'images/galgje1.png' %} width="161" height="191"> 
-          {% elif status == 2 %}
-          <img src={% static 'images/galgje2.png' %} width="161" height="191"> 
-          {% elif status == 3 %}
-          <img src={% static 'images/galgje3.png' %} width="161" height="191"> 
-          {% elif status == 4 %}
-          <img src={% static 'images/galgje4.png' %} width="161" height="191"> 
-          {% elif status == 5 %}
-          <img src={% static 'images/galgje5.png' %} width="161" height="191"> 
-          {% elif status == 6 %}
-          <img src={% static 'images/galgje6.png' %} width="161" height="191"> 
-          {% else %}
-          <img src={% static 'images/galgje7.png' %} width="161" height="191"> 
-        {% endif %}
+        <img src={{ statusimage }} width="161" height="191"> 
       </td>
     </tr>
     </table>
