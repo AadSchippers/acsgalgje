@@ -16,7 +16,13 @@ def index(request):
             gamevars = InitSpel(totalscore)
 
     if request.method == 'POST':
-        letter = request.POST['letter']
+        try:
+            if request.POST['pressedkey']:
+                letter = str(request.POST['pressedkey']).lower()
+            else:
+                letter = request.POST['letter']
+        except:
+            letter = ''
         status = request.POST['status']
         guessword = request.POST['guessword']
         word = request.POST['word']
@@ -93,7 +99,22 @@ def InitSpel(totalscore):
     return gamevars
 
 
+def evaluateletter(letter, gamevars):
+    if letter < 'a' or letter > 'z':
+        return "Dat is toch geen letter?"
+
+    if letter in gamevars['guessedletters']:
+        return "Die heb je al gehad joh!"
+
+    return None
+
 def RaadWoord(letter, gamevars):
+    statustext = evaluateletter(letter, gamevars)
+    if statustext:
+        gamevars['statustext'] = statustext
+        return gamevars
+
+
     guessedletters = gamevars['guessedletters']
     guessedletters.append(letter)
     gamevars['guessedletters'] = guessedletters

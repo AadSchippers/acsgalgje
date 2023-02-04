@@ -21,10 +21,10 @@
           {% if status > 6 %}
             <p style="display: block" textalign="center" class="word">{{ word }}</p>
           {% else %}
-            <p style="display: contents" textalign="center" class="word">{{ word }}</p>
+            <p style="display: none" textalign="center" class="word">{{ word }}</p>
           {% endif %}
           <br><br>
-          <p textalign="center" class="guessword">{{ statustext }}</p>
+          <p textalign="center" class="statustext">{{ statustext }}</p>
         </td>
       <td class="rightpanel" align="right">
         {% if status == 0 %}
@@ -56,6 +56,7 @@
       <input type='hidden' name="totalscore" value="{{ totalscore }}">
       <input type='hidden' name="statustext" value="{{ statustext }}">
       <input type='hidden' name="gamedone" value="{{ gamedone }}">
+      <input type='text' name="pressedkey" maxlength="1" autofocus onkeyup=this.form.submit() size="1" style="opacity:0">
       {% csrf_token %}
       <ul id="keyboard">
         <li class="tab"></li>

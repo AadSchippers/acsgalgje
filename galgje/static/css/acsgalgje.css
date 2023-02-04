@@ -41,7 +41,14 @@
         background: midnightblue;
         width: 488px;
         }
-           
+
+    #container .statustext {
+        font-weight: 600;
+        text-align: center;
+        color: midnightblue;
+        width: 488px;
+    }
+               
     #keyboard {
     margin: 0;
     padding: 0;
