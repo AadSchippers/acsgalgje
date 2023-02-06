@@ -32,6 +32,14 @@ def index(request):
         totalscore = int(request.POST['totalscore'])
         statustext = request.POST['statustext']
         gamedone = ast.literal_eval(request.POST['gamedone'])
+        try: 
+            eerste = request.POST['eerste']
+        except:
+            eerste = False
+        try:
+            laatste = request.POST['laatste']
+        except:
+            laatste = False
 
         gamevars = {
             'guessedletters': guessedletters,
@@ -42,10 +50,18 @@ def index(request):
             'totalscore': totalscore,
             'statustext': statustext,
             'gamedone': gamedone,
+            'eerste': eerste,
+            'laatste': laatste,
         }
 
         if letter == 'Nieuw':
             gamevars = InitSpel(totalscore)
+        elif letter == "Eerste":
+            gamevars['eerste'] = "True"
+            gamevars = eersteletter(gamevars)
+        elif letter == "Laatste":
+            gamevars['laatste'] = "True"
+            gamevars = laatsteletter(gamevars)
         else:
             if not gamedone:
                 gamevars = RaadWoord(letter, gamevars)
@@ -58,6 +74,8 @@ def index(request):
     totalscore = gamevars['totalscore']
     statustext = gamevars['statustext']
     gamedone = gamevars['gamedone']
+    eerste = str(gamevars['eerste'])
+    laatste = str(gamevars['laatste'])
 
     statusimage = getstatusimage(status)
 
@@ -73,6 +91,8 @@ def index(request):
         'statustext': statustext,
         'statusimage': statusimage,
         'gamedone': gamedone,
+        'eerste': eerste,
+        'laatste': laatste,
         }
     )
 
@@ -87,6 +107,8 @@ def InitSpel(totalscore):
     random.seed()
     allwords = list(set(words.orgwords) | set(words.newwords))
     word = allwords[random.randint(0, len(allwords)-1)]
+
+    word = "badjas"
 
     i = 0
     guessword = ""
@@ -105,8 +127,32 @@ def InitSpel(totalscore):
         'totalscore': totalscore,
         'statustext': "", 
         'gamedone': False,
+        'eerste': "False",
+        'laatste': "False",
     }
     
+    return gamevars
+
+
+def eersteletter(gamevars):
+    guessword = gamevars['guessword']
+    word = gamevars['word']
+
+    guessword = word [0] + guessword[1:]
+
+    gamevars['guessword'] = guessword
+
+    return gamevars
+
+
+def laatsteletter(gamevars):
+    guessword = gamevars['guessword']
+    word = gamevars['word']
+
+    guessword = guessword [0:len(guessword)-1] + word[len(guessword)-1:]
+
+    gamevars['guessword'] = guessword
+
     return gamevars
 
 
@@ -135,11 +181,23 @@ def RaadWoord(letter, gamevars):
     status = gamevars['status']
     score = gamevars['score']
     totalscore = gamevars['totalscore']
+    eerste = gamevars['eerste']
+    laatste = gamevars['laatste']
 
     gamedone = False
     LetterFound = False
-    i = 0
-    while i < len(word):
+    if eerste == "True":
+        iStart = 1
+        strMeer = " niet meer"
+    else:
+        iStart = 0
+    if laatste == "True":
+        iEnd = len(word) - 1
+        strMeer = " niet meer"
+    else:
+        iEnd = len(word)
+    i = iStart
+    while i < iEnd:
         if letter == word[i]:
             guessword = guessword [0:i] + letter + guessword[i+1:]
             LetterFound = True
@@ -149,11 +207,15 @@ def RaadWoord(letter, gamevars):
         statustext = "Ja, de " + letter + " is goed."
     else:
         status = status + 1
-        statustext = "Nee, de " + letter + " zit er niet in."
+        statustext = "Nee, de " + letter + " zit er" + strMeer + " niet in."
 
     if guessword == word:
         gamedone = True
         score = int(512 / (2**(status+1)))
+        if eerste == "True":
+            score = int(score / 2)
+        if laatste == "True":
+            score = int(score / 2)
         if status == 0:
             statustext = "Wauw, zonder fouten!"
         elif status == 1:

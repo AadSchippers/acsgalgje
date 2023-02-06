@@ -31,7 +31,7 @@
       </td>
     </tr>
     </table>
-    <form method="POST" class="galgje-form">
+    <form method="POST" class="galgje-form" autocomplete="off">
       <input type='hidden' name="status" value="{{ status }}">
       <input type='hidden' name="word" value="{{ word }}">
       <input type='hidden' name="guessword" value="{{ guessword }}">
@@ -40,6 +40,8 @@
       <input type='hidden' name="totalscore" value="{{ totalscore }}">
       <input type='hidden' name="statustext" value="{{ statustext }}">
       <input type='hidden' name="gamedone" value="{{ gamedone }}">
+      <input type='hidden' name="eerste" value="{{ eerste }}">
+      <input type='hidden' name="laatste" value="{{ laatste }}">
       <input type='text' name="pressedkey" maxlength="1" autofocus onkeyup=this.form.submit() size="1" style="opacity:0">
       {% csrf_token %}
       <ul id="keyboard">
@@ -94,9 +96,12 @@
         {% else %}
           <li class="letter enabled">p</li>
         {% endif %}
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="symbol lastitem"><span class="off"></span><span class="on"></span></li>
+        <li class="symbol"></li>
+        {% if eerste == "True" %}
+          <li class="eerste disabled lastitem">Eerste</li>
+        {% else %}
+          <li class="eerste enabled lastitem">Eerste</li>
+        {% endif %}
         <li class="capslock"></li>
         {% if 'a' in guessedletters %}
           <li class="letter disabled">a</li>
@@ -143,10 +148,13 @@
         {% else %}
           <li class="letter enabled">l</li>
         {% endif %}
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="return lastitem"></li>
-        <li class="left-shift"></li>
+        <li class="symbol"></span></li>
+        {% if laatste == "True" %}
+          <li class="laatste disabled lastitem">Laatste</li>
+        {% else %}
+          <li class="laatste enabled lastitem">Laatste</li>
+        {% endif %}
+          <li class="left-shift"></li>
         {% if 'z' in guessedletters %}
           <li class="letter disabled">z</li>
         {% else %}
@@ -182,10 +190,10 @@
         {% else %}
           <li class="letter enabled">m</li>
         {% endif %}
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="symbol"><span class="off"></span><span class="on"></span></li>
-        <li class="right-shift enabled lastitem">Nieuw</li>
+        <li class="symbol"></li>
+        <li class="symbol"></li>
+        <li class="symbol"></li>
+        <li class="nieuw enabled lastitem">Nieuw</li>
     </ul>
   </form>
   <table width=100%>

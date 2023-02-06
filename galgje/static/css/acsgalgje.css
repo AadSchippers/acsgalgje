@@ -94,25 +94,24 @@
                 width: 95px;
                 }
     
-                #keyboard .right-shift {
-                width: 109px;
-                }
+                #keyboard .nieuw {
+                    width: 109px;
+                    }
     
+                #keyboard .eerste {
+                    width: 85px;
+                    }
+    
+                #keyboard .laatste {
+                    width: 122px;
+                    }
+                                    
             .lastitem {
             margin-right: 0;
             }
     
             .uppercase {
             text-transform: uppercase;
-            }
-    
-            #keyboard .space {
-            clear: left;
-            width: 681px;
-            }
-    
-            .on {
-            display: none;
             }
     
             #keyboard li:hover {
