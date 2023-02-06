@@ -108,8 +108,6 @@ def InitSpel(totalscore):
     allwords = list(set(words.orgwords) | set(words.newwords))
     word = allwords[random.randint(0, len(allwords)-1)]
 
-    word = "badjas"
-
     i = 0
     guessword = ""
     while i < len(word):
@@ -186,6 +184,7 @@ def RaadWoord(letter, gamevars):
 
     gamedone = False
     LetterFound = False
+    strMeer = ""
     if eerste == "True":
         iStart = 1
         strMeer = " niet meer"
