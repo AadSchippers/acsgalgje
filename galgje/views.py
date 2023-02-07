@@ -66,6 +66,7 @@ def index(request):
             if not gamedone:
                 gamevars = RaadWoord(letter, gamevars)
 
+    useragent = request.headers['User-Agent']
     status = gamevars['status']
     guessword = gamevars['guessword']
     word = gamevars['word']
@@ -93,6 +94,7 @@ def index(request):
         'gamedone': gamedone,
         'eerste': eerste,
         'laatste': laatste,
+        'useragent': useragent,
         }
     )
 
