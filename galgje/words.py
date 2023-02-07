@@ -15,8 +15,6 @@ orgwords = [
     "briefpapier",
     "bril",
     "broodmes",
-    "buggy",
-    "bungalow",
     "bureau",
     "chimpansee",
     "computer",
@@ -75,7 +73,6 @@ orgwords = [
     "spelletje",
     "sprokkelhout",
     "sprookjesbos",
-    "stoeipoes",
     "stoel",
     "stoomboot",
     "stopkontakt",
@@ -99,7 +96,6 @@ orgwords = [
     "zeiljacht",
     "zolderraam",
     "zomer",
-    "zwezerik",
 ]
 
 newwords = [
@@ -118,6 +114,7 @@ newwords = [
     "drumstel",
     "elastiek",
     "frankrijk",
+    "frietje",
     "gieter",
     "gitaar",
     "glijbaan",
@@ -133,6 +130,7 @@ newwords = [
     "kleurboek",
     "klimrek",
     "koekje",
+    "karate",
     "leeftijd",
     "leesboek",
     "lego",
