@@ -10,11 +10,15 @@ from . import words
 def index(request):
     if request.method == 'GET':
         try:
+            totalscore == gamedone['totalscore']
             if not totalscore:
-                gamevars = InitSpel(totalscore)
+                gamevars = InitSpel(gamevars)
         except UnboundLocalError:
-            totalscore = 0
-            gamevars = InitSpel(totalscore)
+            gamevars = {
+                    'totalscore': 0,
+                    'gamedone': False,
+                }
+            gamevars = InitSpel(gamevars)
 
     if request.method == 'POST':
         try:
@@ -55,7 +59,7 @@ def index(request):
         }
 
         if letter == 'Nieuw':
-            gamevars = InitSpel(totalscore)
+            gamevars = InitSpel(gamevars)
         elif letter == "Eerste":
             gamevars['eerste'] = "True"
             gamevars = eersteletter(gamevars)
@@ -105,10 +109,16 @@ def getstatusimage(status):
 
     return settings.STATIC_URL + "images/galgje7.png"
 
-def InitSpel(totalscore):
+def InitSpel(gamevars):
     random.seed()
     allwords = list(set(words.orgwords) | set(words.newwords))
     word = allwords[random.randint(0, len(allwords)-1)]
+    
+    totalscore = gamevars['totalscore']
+    gamedone = gamevars['gamedone']
+
+    if gamedone == False:
+        totalscore = 0
 
     i = 0
     guessword = ""
