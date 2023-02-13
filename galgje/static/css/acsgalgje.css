@@ -9,8 +9,8 @@
     background: lightgrey;
 }    
     #container {
-    margin: 100px auto;
-    width: 688px;
+    margin: auto;
+    width: 684px;
     }
 
     #container .leftpanel {
@@ -18,7 +18,7 @@
     }
 
     #container .rightpanel {
-        width: 200px;
+        width: 196px;
     }
 
     #container .scorepanel {
@@ -95,11 +95,11 @@
                 }
     
                 #keyboard .nieuw {
-                    width: 109px;
+                    width: 108px;
                     }
     
                 #keyboard .eerste {
-                    width: 85px;
+                    width: 86px;
                     }
     
                 #keyboard .laatste {

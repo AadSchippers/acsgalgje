@@ -12,12 +12,12 @@
 
 <body>
   <div id="container">
-    <div align="center">
-      <img src={% static 'images/GalgjeHeader.png' %} width="312" height="111"> 
-    </div>
     <table>
       <tr>
         <td class="leftpanel">
+          <div align="center">
+            <img src={% static 'images/GalgjeHeader.png' %} width="312" height="111"> 
+          </div>
           <p textalign="center" class="guessword">{{ guessword }}</p>
           {% if status > 6 %}
             <p style="display: block" textalign="center" class="word">{{ word }}</p>
