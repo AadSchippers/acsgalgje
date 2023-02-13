@@ -22,9 +22,8 @@
           {% if status > 6 %}
             <p style="display: block" textalign="center" class="word">{{ word }}</p>
           {% else %}
-            <p style="display: none" textalign="center" class="word">{{ word }}</p>
+            <br>
           {% endif %}
-          <br><br>
           <p textalign="center" class="statustext">{{ statustext }}</p>
         </td>
       <td class="rightpanel" align="right">
@@ -46,7 +45,6 @@
       <input type='text' name="pressedkey" maxlength="1" autofocus onkeyup=this.form.submit() size="1" style="opacity:0">
       {% csrf_token %}
       <ul id="keyboard">
-        <li class="tab"></li>
         {% if 'q' in guessedletters %}
           <li class="letter disabled">q</li>
         {% else %}
@@ -97,7 +95,6 @@
         {% else %}
           <li class="letter enabled">p</li>
         {% endif %}
-        <li class="symbol"></li>
         {% if eerste == "True" %}
           <li class="eerste disabled lastitem">Eerste</li>
         {% else %}
@@ -149,7 +146,6 @@
         {% else %}
           <li class="letter enabled">l</li>
         {% endif %}
-        <li class="symbol"></span></li>
         {% if laatste == "True" %}
           <li class="laatste disabled lastitem">Laatste</li>
         {% else %}
@@ -191,7 +187,6 @@
         {% else %}
           <li class="letter enabled">m</li>
         {% endif %}
-        <li class="symbol"></li>
         <li class="symbol"></li>
         <li class="symbol"></li>
         <li class="nieuw enabled lastitem">Nieuw</li>
