@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
   <title>AcsGalgje</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/acsgalgje.css' %}"/>
   <link rel="shortcut icon" type="image/png" href="{% static 'images/galgje.ico' %}"/>
@@ -192,12 +192,14 @@
         <li class="nieuw enabled lastitem">Nieuw</li>
     </ul>
   </form>
-  <table width=100%>
-    <tr>
-      <td width=50%><p class="scorepanel" align="left" textalign="left">Score: {{score}}</p></td>
-      <td width=50%><p class="scorepanel" align="right" textalign="right">Totaalscore: {{totalscore}}</p></td>
-    </tr>
-  </table>
+  <div class="scores">
+    <table width=100%>
+      <tr>
+        <td width=50%><p class="scorepanel" align="left" textalign="left">Score: {{score}}</p></td>
+        <td width=50%><p class="scorepanel" align="right" textalign="right">Totaalscore: {{totalscore}}</p></td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

@@ -21,6 +21,10 @@
         width: 162px;
     }
 
+    #container .scores {
+        margin-right: 5px;
+    }
+
     #container .scorepanel {
         color: midnightblue;
     }
