@@ -18,9 +18,9 @@
           <div align="center">
             <img src={% static 'images/GalgjeHeader.png' %} width="312" height="111"> 
           </div>
-          <p textalign="center" class="guessword">{{ guessword }}</p>
+          <p textalign="center" class="guessword"><b>{{ guessword }}</b></p>
           {% if status > 6 %}
-            <p style="display: block" textalign="center" class="word">{{ word }}</p>
+            <p style="display: block" textalign="center" class="word"><b>{{ word }}</b></p>
           {% else %}
             <br>
           {% endif %}

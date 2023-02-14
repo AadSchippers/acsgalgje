@@ -111,8 +111,7 @@ def getstatusimage(status):
 
 def InitSpel(gamevars):
     random.seed()
-    allwords = list(set(words.orgwords) | set(words.newwords))
-    word = allwords[random.randint(0, len(allwords)-1)]
+    word = words.allwords[random.randint(0, len(words.allwords)-1)]
     
     totalscore = gamevars['totalscore']
     gamedone = gamevars['gamedone']

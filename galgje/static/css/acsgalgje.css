@@ -99,15 +99,21 @@
                 }
     
                 #keyboard .nieuw {
-                    width: 108px;
-                    }
+                    width: 106px;
+                    padding-right: 5px;
+                    text-align: right;
+                }
     
                 #keyboard .eerste {
                     width: 86px;
+                    padding-right: 5px;
+                    text-align: right;
                     }
     
                 #keyboard .laatste {
-                    width: 122px;
+                    width: 120px;
+                    padding-right: 5px;
+                    text-align: right;
                     }
                                     
             .lastitem {
