@@ -151,6 +151,10 @@ def eersteletter(gamevars):
 
     gamevars['guessword'] = guessword
 
+    if guessword == word:
+        gamevars['gamedone'] = True
+        gamevars = finishgame(gamevars)
+
     return gamevars
 
 
@@ -161,6 +165,10 @@ def laatsteletter(gamevars):
     guessword = guessword [0:len(guessword)-1] + word[len(guessword)-1:]
 
     gamevars['guessword'] = guessword
+
+    if guessword == word:
+        gamevars['gamedone'] = True
+        gamevars = finishgame(gamevars)
 
     return gamevars
 
@@ -188,8 +196,6 @@ def RaadWoord(letter, gamevars):
     guessword = gamevars['guessword']
     word = gamevars['word']
     status = gamevars['status']
-    score = gamevars['score']
-    totalscore = gamevars['totalscore']
     eerste = gamevars['eerste']
     laatste = gamevars['laatste']
 
@@ -198,12 +204,14 @@ def RaadWoord(letter, gamevars):
     strMeer = ""
     if eerste == "True":
         iStart = 1
-        strMeer = " niet meer"
+        if letter == word[0]:
+            strMeer = " niet meer"
     else:
         iStart = 0
     if laatste == "True":
         iEnd = len(word) - 1
-        strMeer = " niet meer"
+        if letter == word[iEnd]:
+            strMeer = " niet meer"
     else:
         iEnd = len(word)
     i = iStart
@@ -219,42 +227,59 @@ def RaadWoord(letter, gamevars):
         status = status + 1
         statustext = "Nee, de " + letter + " zit er" + strMeer + " niet in."
 
+    gamevars['status'] = status
+    gamevars['statustext'] = statustext
+    gamevars['guessword'] = guessword
+
     if guessword == word:
         gamedone = True
-        score = int(512 / (2**(status+1)))
-        if eerste == "True":
-            score = int(score / 2)
-        if laatste == "True":
-            score = int(score / 2)
-        if status == 0:
-            statustext = "Wauw, zonder fouten!"
-        elif status == 1:
-            statustext = "Zo, dat ging goed!"
-        elif status == 2:
-            statustext = "Prima gedaan!"
-        elif status == 3:
-            statustext = "Jippie geraden!"
-        elif status == 4:
-            statustext = "Het touw hing al klaar!"
-        elif status == 5:
-            statustext = "Je kreeg het knap benauwd!"
-        elif status == 6:
-            statustext = "Dat ging maar net!"
     elif status == 7:
         gamedone = True
+
+    gamevars['gamedone'] = gamedone
+
+    if gamedone:
+        gamevars == finishgame(gamevars)
+
+    return gamevars
+
+def finishgame(gamevars):
+    status = gamevars['status']
+    score = gamevars['score']
+    totalscore = gamevars['totalscore']
+    eerste = gamevars['eerste']
+    laatste = gamevars['laatste']
+
+    score = int(512 / (2**(status+1)))
+    if eerste == "True":
+        score = int(score / 2)
+    if laatste == "True":
+        score = int(score / 2)
+    if status == 0:
+        statustext = "Wauw, zonder fouten!"
+    elif status == 1:
+        statustext = "Zo, dat ging goed!"
+    elif status == 2:
+        statustext = "Prima gedaan!"
+    elif status == 3:
+        statustext = "Jippie geraden!"
+    elif status == 4:
+        statustext = "Het touw hing al klaar!"
+    elif status == 5:
+        statustext = "Je kreeg het knap benauwd!"
+    elif status == 6:
+        statustext = "Dat ging maar net!"
+    elif status == 7:
         score = 0
         statustext = "Helaas pindakaas."
 
-    if gamedone:
-        if score > 0:
-            totalscore = totalscore + score
-        else:
-            totalscore = 0
+    if score > 0:
+        totalscore = totalscore + score
+    else:
+        totalscore = 0
    
-    gamevars['guessword'] = guessword
     gamevars['status'] = status
     gamevars['statustext'] = statustext
-    gamevars['gamedone'] = gamedone
     gamevars['score'] = score
     gamevars['totalscore'] = totalscore
 
